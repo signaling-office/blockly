@@ -494,22 +494,20 @@ Blockly.JavaScript['resize'] = function(block) {
 };
 
 
-Blockly.Blocks['run_code'] = {
+Blockly.Blocks['start'] = {
   init: function() {
-    this.appendValueInput("code")
-        .setCheck("String")
-        .appendField("Run_JavaScript_code");
-    this.setInputsInline(true);
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://signaling.cf/blockly/ASOIOWVp2S7NLMt1652318130_1652318153.png", 100, 40, { alt: "開始！", flipRtl: "FALSE" }));
+    this.appendStatementInput("code")
+        .setCheck(null);
+    this.setColour(255);
  this.setTooltip("");
  this.setHelpUrl("");
   }
 };
-Blockly.JavaScript['run_code'] = function(block) {
-  var value_code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = '...;\n';
+Blockly.JavaScript['start'] = function(block) {
+  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+  var code = 'function main(){'+statements_code+'};\n';
   return code;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -525,6 +523,7 @@ workspace.addChangeListener(function() {
 });
 
 function run(){
-  eval(document.getElementById("codebox").value+'}')
+  eval(document.getElementById("codebox").value);
+  main();
 }
 </script>
