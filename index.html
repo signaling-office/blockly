@@ -507,7 +507,7 @@ Blockly.Blocks['start'] = {
 };
 Blockly.JavaScript['start'] = function(block) {
   var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
-  var code = 'function main(){'+statements_code+'};\n';
+  var code = 'function main(){\n'+statements_code+'};\n';
   return code;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
