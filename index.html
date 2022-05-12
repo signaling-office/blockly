@@ -353,6 +353,24 @@
 <textarea id="codebox" rows="10" cols="100"></textarea>
 <input type="button" onclick="run()" value="Run">
 <script>
+
+ Blockly.Blocks['start'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://signaling.cf/blockly/ASOIOWVp2S7NLMt1652318130_1652318153.png", 100, 40, { alt: "開始！", flipRtl: "FALSE" }));
+    this.setNextStatement(true, null);
+    this.setColour(255);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['start'] = function(block) {
+  // TODO: Assemble JavaScript into code variable.
+  var code = 'async function main(){;\n';
+  return code;
+};
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 const workspace = Blockly.inject('blocklyDiv', {
   toolbox: document.getElementById('toolbox')
 });
