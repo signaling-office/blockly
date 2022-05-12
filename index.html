@@ -347,7 +347,7 @@
     custom="PROCEDURE"></category>
     <sep></sep>
     <category name="Costom" categorystyle="custom_category">
-        
+        <block type="start"></block>
     </category>
   </xml>
 <textarea id="codebox" rows="10" cols="100"></textarea>
@@ -365,8 +365,30 @@
   }
 };
 Blockly.JavaScript['start'] = function(block) {
-  // TODO: Assemble JavaScript into code variable.
   var code = 'async function main(){;\n';
+  return code;
+};
+
+
+Blockly.Blocks['turn'] = {
+  init: function() {
+    this.appendValueInput("angle")
+        .setCheck("Number")
+        .appendField(new Blockly.FieldDropdown([["右","right"], ["左","left"], ["後ろ","back"]]), "LorR")
+        .appendField("方向に");
+    this.appendDummyInput()
+        .appendField("回転");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("name");
+ this.setHelpUrl("https://topi.cf");
+  }
+};
+Blockly.JavaScript['turn'] = function(block) {
+  var dropdown_lorr = block.getFieldValue('LorR');
+  var value_angle = Blockly.JavaScript.valueToCode(block, 'angle', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
   return code;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
