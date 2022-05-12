@@ -348,6 +348,12 @@
     <sep></sep>
     <category name="Costom" categorystyle="custom_category">
         <block type="start"></block>
+        <block type="turn"></block>
+        <block type="go"></block>
+        <block type="move"></block>
+        <block type="sleep"></block>
+        <block type="resize"></block>
+        <block type="run_code"></block>
     </category>
   </xml>
 <textarea id="codebox" rows="10" cols="100"></textarea>
@@ -391,6 +397,121 @@ Blockly.JavaScript['turn'] = function(block) {
   var code = '...;\n';
   return code;
 };
+
+
+Blockly.Blocks['go'] = {
+  init: function() {
+    this.appendValueInput("speed")
+        .setCheck("Number")
+        .appendField("速さ");
+    this.appendDummyInput()
+        .appendField("で進む");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("name");
+ this.setHelpUrl("https://topi.cf");
+  }
+};
+Blockly.JavaScript['go'] = function(block) {
+  var value_speed = Blockly.JavaScript.valueToCode(block, 'speed', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
+  return code;
+};
+
+
+Blockly.Blocks['move'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("座標");
+    this.appendValueInput("X")
+        .setCheck("Number")
+        .appendField("X");
+    this.appendValueInput("Y")
+        .setCheck("Number")
+        .appendField("Y");
+    this.appendDummyInput()
+        .appendField("に動かす");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("name");
+ this.setHelpUrl("https://topi.cf");
+  }
+};
+Blockly.JavaScript['move'] = function(block) {
+  var value_x = Blockly.JavaScript.valueToCode(block, 'X', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_y = Blockly.JavaScript.valueToCode(block, 'Y', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
+  return code;
+};
+
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+Blockly.Blocks['sleep'] = {
+  init: function() {
+    this.appendValueInput("time")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT);
+    this.appendDummyInput()
+        .appendField("秒待つ");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['sleep'] = function(block) {
+  var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = 'sleep('+value_time*1000+');\n';
+  return code;
+};
+
+
+Blockly.Blocks['resize'] = {
+  init: function() {
+    this.appendValueInput("size")
+        .setCheck("Number")
+        .appendField(new Blockly.FieldDropdown([["横","width"], ["縦","height"]]), "WroH")
+        .appendField("方向の大きさを");
+    this.appendDummyInput()
+        .appendField("に変更");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['resize'] = function(block) {
+  var dropdown_wroh = block.getFieldValue('WroH');
+  var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
+  return code;
+};
+
+
+Blockly.Blocks['run_code'] = {
+  init: function() {
+    this.appendValueInput("code")
+        .setCheck("String")
+        .appendField("Run_JavaScript_code");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['run_code'] = function(block) {
+  var value_code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
+  return code;
+};
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const workspace = Blockly.inject('blocklyDiv', {
@@ -404,6 +525,6 @@ workspace.addChangeListener(function() {
 });
 
 function run(){
-  eval(document.getElementById("codebox").value)
+  eval(document.getElementById("codebox").value+'}')
 }
 </script>
