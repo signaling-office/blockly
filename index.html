@@ -360,18 +360,20 @@
 <input type="button" onclick="run()" value="Run">
 <script>
 
- Blockly.Blocks['start'] = {
+Blockly.Blocks['start'] = {
   init: function() {
     this.appendDummyInput()
         .appendField(new Blockly.FieldImage("https://signaling.cf/blockly/ASOIOWVp2S7NLMt1652318130_1652318153.png", 100, 40, { alt: "開始！", flipRtl: "FALSE" }));
-    this.setNextStatement(true, null);
+    this.appendStatementInput("code")
+        .setCheck(null);
     this.setColour(255);
  this.setTooltip("");
  this.setHelpUrl("");
   }
 };
 Blockly.JavaScript['start'] = function(block) {
-  var code = 'async function main(){;\n';
+  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
+  var code = 'async function main(){\n'+statements_code+'};\n';
   return code;
 };
 
@@ -465,7 +467,7 @@ Blockly.Blocks['sleep'] = {
 };
 Blockly.JavaScript['sleep'] = function(block) {
   var value_time = Blockly.JavaScript.valueToCode(block, 'time', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = 'sleep('+value_time*1000+');\n';
+  var code = 'await sleep('+value_time*1000+');\n';
   return code;
 };
 
@@ -490,24 +492,6 @@ Blockly.JavaScript['resize'] = function(block) {
   var dropdown_wroh = block.getFieldValue('WroH');
   var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...;\n';
-  return code;
-};
-
-
-Blockly.Blocks['start'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://signaling.cf/blockly/ASOIOWVp2S7NLMt1652318130_1652318153.png", 100, 40, { alt: "開始！", flipRtl: "FALSE" }));
-    this.appendStatementInput("code")
-        .setCheck(null);
-    this.setColour(255);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-Blockly.JavaScript['start'] = function(block) {
-  var statements_code = Blockly.JavaScript.statementToCode(block, 'code');
-  var code = 'function main(){\n'+statements_code+'};\n';
   return code;
 };
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
