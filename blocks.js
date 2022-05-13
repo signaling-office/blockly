@@ -47,8 +47,10 @@ Blockly.Blocks['go'] = {
     this.appendValueInput("speed")
         .setCheck("Number")
         .appendField("速さ");
-    this.appendDummyInput()
+    this.appendValueInput("class")
+        .setCheck("class")
         .appendField("で進む");
+    this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
@@ -58,6 +60,7 @@ Blockly.Blocks['go'] = {
 };
 Blockly.JavaScript['go'] = function(block) {
   var value_speed = Blockly.JavaScript.valueToCode(block, 'speed', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...;\n';
   return code;
 };
@@ -65,11 +68,13 @@ Blockly.JavaScript['go'] = function(block) {
 
 Blockly.Blocks['move'] = {
   init: function() {
-    this.appendValueInput("position")
-        .setCheck("position")
-        .appendField("座標");
     this.appendValueInput("class")
         .setCheck("class")
+        .appendField("要素名");
+    this.appendValueInput("position")
+        .setCheck("position")
+        .appendField("を座標");
+    this.appendDummyInput()
         .appendField("に動かす");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -80,8 +85,8 @@ Blockly.Blocks['move'] = {
   }
 };
 Blockly.JavaScript['move'] = function(block) {
-  var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
   var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...;\n';
   return code;
 };
@@ -115,8 +120,9 @@ Blockly.Blocks['resize'] = {
         .setCheck("Number")
         .appendField(new Blockly.FieldDropdown([["横","width"], ["縦","height"]]), "WroH")
         .appendField("方向の大きさを");
-    this.appendDummyInput()
-        .appendField("に変更");
+    this.appendValueInput("class")
+        .setCheck("class")
+        .appendField("にする");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
@@ -128,6 +134,45 @@ Blockly.Blocks['resize'] = {
 Blockly.JavaScript['resize'] = function(block) {
   var dropdown_wroh = block.getFieldValue('WroH');
   var value_size = Blockly.JavaScript.valueToCode(block, 'size', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...;\n';
   return code;
+};
+
+
+Blockly.Blocks['class'] = {
+  init: function() {
+    this.appendValueInput("aaa")
+        .setCheck("String")
+        .appendField("要素名");
+    this.setInputsInline(true);
+    this.setOutput(true, "class");
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['class'] = function(block) {
+  var value_aaa = Blockly.JavaScript.valueToCode(block, 'aaa', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...';
+  return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+
+Blockly.Blocks['get_position'] = {
+  init: function() {
+    this.appendValueInput("class")
+        .setCheck("class")
+        .appendField("座標を取得");
+    this.setInputsInline(true);
+    this.setOutput(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['get_position'] = function(block) {
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...';
+  return [code, Blockly.JavaScript.ORDER_NONE];
 };
