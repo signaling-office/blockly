@@ -6,6 +6,9 @@ var x = 50;
 var y = 50;
 $("#red-box").offset({left:x*width, top:y*height})
 
+//jqueryのcss動的書き換え
+$("div").css("width", "300px")
+
 
 //iframeの動的変更
 var preview = document.getElementById("preview");  
