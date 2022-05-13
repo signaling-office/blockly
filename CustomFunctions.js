@@ -5,7 +5,8 @@ function _start(code){
 
 // turn
 function _turn(angle,classname){
-  return;
+  //transform:rotate(数値deg);
+  return ;
 }
 
 // go
