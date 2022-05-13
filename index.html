@@ -353,6 +353,8 @@
         <block type="move"></block>
         <block type="sleep"></block>
         <block type="resize"></block>
+        <block type="class"></block>
+        <block type="get_position"></block>
         <block type="run_code"></block>
     </category>
   </xml>
@@ -551,6 +553,26 @@ Blockly.JavaScript['get_position'] = function(block) {
   var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...';
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+
+Blockly.Blocks['run_code'] = {
+  init: function() {
+    this.appendValueInput("code")
+        .setCheck("String")
+        .appendField("Run_JavaScript_code");
+    this.setInputsInline(true);
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['run_code'] = function(block) {
+  var value_code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = value_code+'\n';
+  return code;
 };
 </script>
 </body>
