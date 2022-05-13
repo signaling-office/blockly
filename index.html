@@ -355,6 +355,7 @@
         <block type="resize"></block>
         <block type="class"></block>
         <block type="get_position"></block>
+        <block type="set_color"></block>
         <block type="run_code"></block>
     </category>
   </xml>
@@ -553,6 +554,27 @@ Blockly.JavaScript['get_position'] = function(block) {
   var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...';
   return [code, Blockly.JavaScript.ORDER_NONE];
+};
+
+
+Blockly.Blocks['set_color'] = {
+  init: function() {
+    this.appendValueInput("class")
+        .setCheck("class")
+        .appendField("色を変更")
+        .appendField(new Blockly.FieldColour("#ff0000"), "color");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+Blockly.JavaScript['set_color'] = function(block) {
+  var colour_color = block.getFieldValue('color');
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
+  var code = '...;\n';
+  return code;
 };
 
 
