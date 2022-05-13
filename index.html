@@ -5,7 +5,7 @@
     <script src="https://cdn.jsdelivr.net/npm/blockly@1.0.0/msg/js/ja.js"></script>
 </head>
 <body>
-
+<script src="/blocks.js"></script>
 <div id="blocklyDiv" style="height: 100%; width: 60%;"></div>
 <xml id="toolbox" style="display: none">
     <category name="Logic" categorystyle="logic_category">
@@ -360,7 +360,6 @@
 <iframe id="preview"></iframe>
 <textarea id="codebox" rows="10" cols="100"></textarea>
 <input type="button" onclick="run()" value="Run">
-<script src="/blocks.js"></script>
 <script>
 const workspace = Blockly.inject('blocklyDiv', {
   toolbox: document.getElementById('toolbox')
