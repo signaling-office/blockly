@@ -1,22 +1,21 @@
 // start
 function _start(code){
-  return 'async function main(){\n' + code + '};\n';
+  return `async function main(){\n${code}};\n`;
 }
 
 // turn
 function _turn(angle,classname){
-  //transform:rotate(数値deg);
-  return ;
+  return `$(".${classname}").css("transform", "rotate(${angle}deg)");`;
 }
 
 // go
-function _go(angle,classname){
+function _go(angle,classname,speed){
   return;
 }
 
 // move
-function _move(){
-  return;
+function _move(position,classname){
+  return `$(".${classname}").offset({left:${position.x}, top:${position.y}})`;
 }
 
 // sleep
