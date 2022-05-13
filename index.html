@@ -377,6 +377,19 @@ function run(){
   eval(document.getElementById("codebox").value);
   main();
 }
+
+
+
+
+/*
+ *
+ * Add Costom Block data
+ * & code
+ *
+ */
+
+
+
 Blockly.Blocks['start'] = {
   init: function() {
     this.appendDummyInput()
@@ -447,13 +460,11 @@ Blockly.JavaScript['go'] = function(block) {
 
 Blockly.Blocks['move'] = {
   init: function() {
-    this.appendValueInput("class")
-        .setCheck("class")
-        .appendField("要素名");
     this.appendValueInput("position")
         .setCheck("position")
-        .appendField("を座標");
-    this.appendDummyInput()
+        .appendField("座標");
+    this.appendValueInput("class")
+        .setCheck("class")
         .appendField("に動かす");
     this.setInputsInline(true);
     this.setPreviousStatement(true, null);
@@ -464,8 +475,8 @@ Blockly.Blocks['move'] = {
   }
 };
 Blockly.JavaScript['move'] = function(block) {
-  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var value_position = Blockly.JavaScript.valueToCode(block, 'position', Blockly.JavaScript.ORDER_ATOMIC);
+  var value_class = Blockly.JavaScript.valueToCode(block, 'class', Blockly.JavaScript.ORDER_ATOMIC);
   var code = '...;\n';
   return code;
 };
