@@ -593,7 +593,7 @@ Blockly.Blocks['run_code'] = {
 };
 Blockly.JavaScript['run_code'] = function(block) {
   var value_code = Blockly.JavaScript.valueToCode(block, 'code', Blockly.JavaScript.ORDER_ATOMIC);
-  var code = value_code+'\n';
+  var code = value_code.replace(/'/)+'\n';
   return code;
 };
 </script>
